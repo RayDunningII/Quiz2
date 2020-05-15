@@ -9,8 +9,11 @@ const App = () => {
     const [correct, setCorrect] = useState('');
     const [data, setData] = useState( [] )
     const [value, setValue] = useState('')
+    const [answers1, setAnswers1] = useState('')
+    const [answers2, setAnswers2] = useState('')
+    const [answers3, setAnswers3] = useState('')
+    const [answers4, setAnswers4] = useState('')
     
-
 
     const index = 0 
     const score = 0
@@ -21,11 +24,11 @@ const App = () => {
         setMovie(data.movie) //[{}]
         setCorrect(data.correct)
         setQuestion(data.question)
-        for(let i = 0; i < data.answers.length; i++){
-            answersOne.push(data.answers[i])
+        for(let i = 0; i < data.length; i++){
+            answersOne.push(data.movie[i].answer1.answers2.answers3.answers4)
             setAnswers(answersOne)
             }    
-    },[movie,correct,question, data])
+    },[movie,correct,question])
 
     const checkAnswer = (value,correctAns) => {
         if(value === correctAns){
