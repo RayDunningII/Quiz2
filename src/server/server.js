@@ -3,73 +3,40 @@ const app = express()
 const port = 4000
 const bodyParser = require('body-parser')
 const cors = require('cors');
+// const password = require('../../mongoConfig');
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
-
-
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'password',
-  database : 'quiz2'
-});
- 
-connection.connect();
- 
-connection.connect(function(err) {
-    if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
-    }
-   
-    console.log('connected as id ' + connection.threadId);
-  });
- 
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.get('/movie', (req,res) => {
-    connection.query('SELECT * FROM movie', (err, movie) => {
-        if(err){
-            res.send('Ooos Error')
-        } else {
-            res.send(movie)
-        }
-    }) 
-  });
 
+// MongoClient.connect('mongodb://localhost', function (err, client) {
+//   if (err) throw err;
 
-  app.get('/movie/:id', (req,res) => {
-    connection.query(`SELECT * FROM movie WHERE id=${req.params.id}`, (err, movie) => {
-        if(err){
-            res.send('error finding movies')
-        } else {
-            res.send(movie)
-        }
-    }) 
-  });
+//   var db = client.db('quiz3');
 
+//   db.collection('quizzes').find().toArray((findErr, result) => {
+//     if (findErr) throw findErr;
+//     console.log(result);
+//     client.close();
+//   });
+// }); 
+app.get('/', (req,res) => {
+  MongoClient.connect('mongodb://localhost', (err,client) => {
+      if(err) console.error(err);
+      const db = client.db('quiz3');
+      db.collection('quizzes').find().toArray((err,result) => {
+          if(err) console.error(err);
+          console.log(result)
+          res.send(result)
 
-
-
-
-
-
-
-
-app.get('/', (req, res) => res.send('Hello World!'))
-
-
-
-
-
-
-
-
-
-
+      });
+    })
+  })
+    
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
