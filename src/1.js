@@ -84,9 +84,6 @@ handleIncreaseScore() {
             <div id="question"  value={2}>
               {this.state.movie[0].question}
             </div>
-            {/* <div id="question"  value={3}>
-              {this.state.movie[1].question}
-            </div> */}
             <button className={classNames[0]} value={correct1} id='one' data-id="1" onClick={this.checkAnswer}> {this.state.movie[0].answers1} </button>
             <button className={classNames[1]} value={correct2} id='two'data-id="2" onClick={this.checkAnswer}> {this.state.movie[0].answers2} </button>
             <button className={classNames[2]} value={correct3} id='three' data-id="3" onClick={this.checkAnswer}> {this.state.movie[0].answers3} </button>
