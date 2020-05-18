@@ -29,7 +29,7 @@ font-family: Open Sans;
   height: 30px;
 }
 
-#one{
+.one{
   color: black;
   width: 243px;
   border-radius: 20px;
@@ -39,7 +39,7 @@ font-family: Open Sans;
   
 }
 
-#two {
+.two {
     color: black;
     width: 243px;
     border-radius: 20px;
@@ -48,7 +48,7 @@ font-family: Open Sans;
     margin-top: 300px;
   }
 
-#three {
+.three {
     color: black;
     width: 243px;
     border-radius: 20px;
@@ -58,7 +58,7 @@ font-family: Open Sans;
   }
   
 
- #four {
+ .four {
     color: black;
     width: 243px;
     border-radius: 20px;
